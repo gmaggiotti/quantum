@@ -1,4 +1,6 @@
 # General
+# https://learning.quantum.ibm.com/tutorial/chsh-inequality
+
 import numpy as np
 
 # Qiskit imports
