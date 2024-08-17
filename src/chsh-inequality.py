@@ -2,7 +2,7 @@
 # https://learning.quantum.ibm.com/tutorial/chsh-inequality
 
 import numpy as np
-
+import json
 # Qiskit imports
 from qiskit import QuantumCircuit
 from qiskit.circuit import Parameter
@@ -15,7 +15,13 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Batch
 import matplotlib.pyplot as plt
 import matplotlib.ticker as tck
 
-token = "f8da5f44ab6afeb23251e443164264b3bfac9314213627d2c7ab1e39dd568f367b6ed9044b6e067ce11da34cfa06db83d22012a6a04465572bdc12ac3460914f"
+
+def load_key(filename):
+    with open(filename, 'r') as file:
+        data = json.load(file)
+    return data['key']
+
+token = load_key("../key.json")
 
 # To run on hardware, select the backend with the fewest number of jobs in the queue
 service = QiskitRuntimeService(channel="ibm_quantum", token=token)
