@@ -28,3 +28,16 @@ Quantum Gate Operations
 - SWAP gate: changes the state between the control and target qbit
 
 ### Entanglement 
+when 2 qbits are entangled they are linked together. Measuring one qbit determines the measurement of the other.
+- e.g: if 2 qibits are entangled in a superposition of |00> and |11> its impossible to say whats the value of the first qbit's
+measurement would be, but once measured we know the value of the other 
+- To entangle two qbits on a quantum computer we need to put the first qbit in a superposition (H) and appli a CNOT gate as
+a control one
+
+```text
+q0 ---- (H) ---------
+                  |
+q1 ---------- (+) ---
+```
+
+
