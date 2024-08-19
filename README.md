@@ -7,9 +7,10 @@ Quantum Gate Operations
 
 ### Rotation Gates
 
-- \+ (X): Rotates the state to its opposite, equivalent to a 180° rotation around the X axis.
-- Z: Rotates the state 180° around the Z axis, modifying the phase of the qubit.
-- H (Hadamard): Applies a 180° rotation around the axis between X and Z, transforming a qubit from a single state (e.g., 0) to a superposition of states (e.g., 0 and 1).
+- NOT gate (\+) : Rotates the state to its opposite, equivalent to a 180° rotation around the X axis.
+- Z: Rotates the state 180° around the Z axis, modifying the phase of the qubit. (modifies the phase of the qbit)
+- H (Hadamard): Applies a 180° rotation around the axis between X and Z, transforming a qubit from a state 0 into
+  a superposition of states (e.g., 0 and 1).  Same works if the initial state was 1
 
 ### Particularities
 
@@ -29,7 +30,7 @@ Quantum Gate Operations
 
 ### Entanglement 
 when 2 qbits are entangled they are linked together. Measuring one qbit determines the measurement of the other.
-- e.g: if 2 qibits are entangled in a superposition of |00> and |11> its impossible to say whats the value of the first qbit's
+- e.g: if 2 qbits are entangled in a superposition of |00> and |11> its impossible to say whats the value of the first qbit's
 measurement would be, but once measured we know the value of the other 
 - To entangle two qbits on a quantum computer we need to put the first qbit in a superposition (H) and appli a CNOT gate as
 a control one
