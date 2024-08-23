@@ -38,7 +38,10 @@ a control one
 ```text
 q0 ---- (H) ---------
                   |
-q1 ---------- (+) ---
+q1 ---------- (CNOT(+)) ---
 ```
 
 
+# The Treasure Door Game
+
+![](img/treasue.img)
