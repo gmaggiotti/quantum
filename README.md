@@ -44,4 +44,4 @@ q1 ---------- (CNOT(+)) ---
 
 # The Treasure Door Game
 
-![](img/treasue.img)
+![](img/treasure.png)
