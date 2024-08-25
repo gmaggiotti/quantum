@@ -44,4 +44,25 @@ q1 ---------- (CNOT(+)) ---
 
 # The Treasure Door Game
 
-![](img/treasure.png)
+![](img/treasure_door.png)
+
+```python
+import from qiskit import QuantumCircuit
+treasure_door = QuantumCircuit(3)
+treasure_door.h(0)
+treasure_door.h(2)
+treasure_door.cx(0,1)
+treasure_door.cx(2,1)
+treasure_door.x(2)
+treasure_door.cx(2,0)
+treasure_door.x(2)
+treasure_door.barrier(range(3))
+treasure_door.swap(0,1)
+treasure_door.x(0)
+treasure_door.x(1)
+treasure_door.cx(2,1)
+treasure_door.x(2)
+treasure_door.cx(2,0)
+treasure_door.x(2)
+treasure_door.measure_all()
+```

@@ -21,12 +21,6 @@ def load_key(filename):
         data = json.load(file)
     return data['key']
 
-token = load_key("../key.json")
-
-# To run on hardware, select the backend with the fewest number of jobs in the queue
-service = QiskitRuntimeService(channel="ibm_quantum", token=token)
-backend = service.least_busy(operational=True, simulator=False)
-print(backend.name)
 
 theta = Parameter("$\\theta$")
 
@@ -35,6 +29,14 @@ chsh_circuit_no_meas.h(0)
 chsh_circuit_no_meas.cx(0, 1)
 chsh_circuit_no_meas.ry(theta, 0)
 chsh_circuit_no_meas.draw(output="mpl", idle_wires=False, style="iqp")
+print(chsh_circuit_no_meas)
+
+token = load_key("../key.json")
+
+# To run on hardware, select the backend with the fewest number of jobs in the queue
+service = QiskitRuntimeService(channel="ibm_quantum", token=token)
+backend = service.least_busy(operational=True, simulator=False)
+print(backend.name)
 
 number_of_phases = 21
 phases = np.linspace(0, 2 * np.pi, number_of_phases)
