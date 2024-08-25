@@ -12,6 +12,8 @@ def load_key(filename):
 
 key = load_key('../key.json')
 
+num_doors = 3
+
 # create the service
 service = QiskitRuntimeService(channel="ibm_quantum", token=key)
 backend = service.least_busy(operational=True, simulator=False)
@@ -21,7 +23,7 @@ sampler = Sampler(backend)
 
 # create the circuit
 
-treasure_door = QuantumCircuit(3)
+treasure_door = QuantumCircuit(num_doors, num_doors)
 treasure_door.h(0)
 treasure_door.h(2)
 treasure_door.cx(0, 1)
@@ -37,7 +39,7 @@ treasure_door.cx(2, 1)
 treasure_door.x(2)
 treasure_door.cx(2, 0)
 treasure_door.x(2)
-treasure_door.measure_all()
+treasure_door.measure([0, 1, 2], [0, 1, 2])
 treasure_door.draw(output="mpl", idle_wires=False, style="iqp")
 print(treasure_door)
 
