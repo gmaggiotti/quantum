@@ -17,8 +17,7 @@ num_doors = 3
 # create the circuit
 
 treasure_door = QuantumCircuit(num_doors, num_doors)
-treasure_door.h(0)
-treasure_door.h(2)
+treasure_door.h([0,2])
 # Apply CNOT gates to entangle qubits 0 and 1, and qubits 2 and 1
 treasure_door.cx([0, 2], 1)
 treasure_door.x(2)
@@ -26,7 +25,7 @@ treasure_door.cx(2, 0)
 treasure_door.x(2)
 treasure_door.barrier(range(3))
 treasure_door.swap(0, 1)
-treasure_door.x([0,1])
+treasure_door.x([0, 1])
 treasure_door.cx(2, 1)
 treasure_door.x(2)
 treasure_door.cx(2, 0)
