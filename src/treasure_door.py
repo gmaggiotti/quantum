@@ -1,6 +1,6 @@
-from qiskit import QuantumCircuit
+from qiskit import QuantumCircuit, transpile
+from qiskit_aer import AerSimulator
 import json
-from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
 
 # Load key
@@ -13,13 +13,6 @@ def load_key(filename):
 key = load_key('../key.json')
 
 num_doors = 3
-
-# create the service
-service = QiskitRuntimeService(channel="ibm_quantum", token=key)
-backend = service.least_busy(operational=True, simulator=False)
-print(backend.name)
-
-sampler = Sampler(backend)
 
 # create the circuit
 
@@ -42,8 +35,13 @@ treasure_door.measure([0, 1, 2], [0, 1, 2])
 treasure_door.draw(output="mpl", idle_wires=False, style="iqp")
 print(treasure_door)
 
-# TODO: make this call as batch
-job = sampler.run([treasure_door])
-print(f"job id: {job.job_id()}")
+# Run the circuit
+simulator = AerSimulator()
+qc_compiled = transpile(treasure_door, simulator)
+job = simulator.run(qc_compiled, shots=1024)
 result = job.result()
-print(result)
+
+# Print the probabilities
+print(result.get_counts(qc_compiled))
+
+
