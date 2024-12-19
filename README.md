@@ -7,7 +7,7 @@ Quantum Gate Operations
 
 ### Rotation Gates
 
-- NOT gate (\+) : Rotates the state to its opposite, equivalent to a 180° rotation around the X axis.
+- X: NOT gate (\+) : Rotates the state to its opposite, equivalent to a 180° rotation around the X axis.
 - Z: Rotates the state 180° around the Z axis, modifying the phase of the qubit. (modifies the phase of the qbit)
 - H (Hadamard): Applies a 180° rotation around the axis between X and Z, transforming a qubit from a state 0 into
   a superposition of states (e.g., 0 and 1).  Same works if the initial state was 1
@@ -27,6 +27,8 @@ Quantum Gate Operations
 - CZ gate: (same)
 - CCNOT: Control-control not gate also known as Toffoli gate. The 2 control qbits must be in state 1 to apply the not
 - SWAP gate: changes the state between the control and target qbit
+
+![](img/Quantum_Logic_Gates.png)
 
 ### Entanglement 
 when 2 qbits are entangled they are linked together. Measuring one qbit determines the measurement of the other.
