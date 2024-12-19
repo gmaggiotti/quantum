@@ -28,7 +28,7 @@ Quantum Gate Operations
 - CCNOT: Control-control not gate also known as Toffoli gate. The 2 control qbits must be in state 1 to apply the not
 - SWAP gate: changes the state between the control and target qbit
 
-<img src="img/Quantum_Logic_Gates.png" alt="Quantum Logic Gates" width="250" height="300" />
+<img src="img/Quantum_Logic_Gates.png" alt="Quantum Logic Gates" width="300" height="400" />
 
 
 ### Entanglement 
