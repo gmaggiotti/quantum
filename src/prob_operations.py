@@ -1,6 +1,6 @@
 import math
-
 import numpy as np
+
 
 # M = ∑ ∣f(a)⟩⟨a∣
 #     a∈Σ
@@ -18,3 +18,28 @@ print(plus_state[0])
 minus_state = np.array([1 / math.sqrt(2), -1 / math.sqrt(2)])
 
 print(np.dot(plus_state, minus_state))
+
+from numpy import array, matmul, round
+
+ket0 = array([1, 0])
+ket1 = array([0, 1])
+print(ket0/2 + ket1/2)
+
+
+from math import sqrt
+
+z = 1j
+# Hadamard Matrix
+H = array([[1 / sqrt(2), 1 / sqrt(2)], [1 / sqrt(2), -1 / sqrt(2)]])
+
+# Phase pi/2 matrix
+S = array([[1, 0], [0, z]])
+
+# (HSH)^2 = R^2 = X
+SH = matmul(S, H)
+R = matmul(H, SH)
+print(R)
+
+X = matmul(R, R)
+# NOT matrix
+print(round(X, 0))
