@@ -1,12 +1,14 @@
-from qiskit import QuantumCircuit, transpile
+from qiskit import QuantumCircuit
 from qiskit.quantum_info import Statevector
-from qiskit_aer import AerSimulator
 from qiskit.visualization import plot_histogram
 import json
 
-# Plotting routines
-import matplotlib.pyplot as plt
-import matplotlib.ticker as tck
+def plot_vectors_state_probs(classical_state: str, circuit: QuantumCircuit, num_samples: int) -> None:
+    state = Statevector.from_label(classical_state)
+    measurement = state.evolve(circuit)
+    statistics = measurement.sample_counts(num_samples)
+    print(statistics)
+    plot_histogram(statistics)
 
 
 # Load key
@@ -42,20 +44,9 @@ print(treasure_door)
 
 # Run the circuit
 classical_state = '100'
-state = Statevector.from_label(classical_state)
-v =state.evolve(treasure_door)
-
-samples = 4000
-statistics = v.sample_counts(samples)
-print(statistics)
-plot_histogram(statistics)
+plot_vectors_state_probs(classical_state, treasure_door, 4000)
 
 
 print("EOF")
-# simulator = AerSimulator()
-# qc_compiled = transpile(treasure_door, simulator)
-# job = simulator.run(qc_compiled, shots=1024)
-# result = job.result()
-#
-# # Print the probabilities
-# print(result.get_counts(qc_compiled))
+
+
