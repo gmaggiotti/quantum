@@ -2,17 +2,25 @@ from qiskit import QuantumCircuit
 from qiskit.quantum_info import Statevector
 from qiskit.visualization import plot_histogram
 import json
+from typing import *
 
 def plot_vectors_state_probs(classical_state: str, circuit: QuantumCircuit, num_samples: int) -> None:
     state = Statevector.from_label(classical_state)
+    # Evolve the state through the quantum circuit
     measurement = state.evolve(circuit)
+
+    #  Simulate measurement
     statistics = measurement.sample_counts(num_samples)
-    print(statistics)
-    plot_histogram(statistics)
+    print("Raw measurement results: ", statistics)
+
+    # Convert counts to probabilities
+    total_counts = sum(statistics.values())
+    probabilities = {state: count / total_counts for state, count in statistics.items()}
+    plot_histogram(probabilities)
 
 
 # Load key
-def load_key(filename):
+def load_key(filename: str) -> Any:
     with open(filename, 'r') as file:
         data = json.load(file)
     return data['key']
@@ -46,7 +54,5 @@ print(treasure_door)
 classical_state = '100'
 plot_vectors_state_probs(classical_state, treasure_door, 4000)
 
-
 print("EOF")
-
 

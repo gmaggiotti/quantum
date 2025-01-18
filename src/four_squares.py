@@ -1,6 +1,7 @@
 from qiskit import QuantumCircuit
 import json
-
+from qiskit.quantum_info import Statevector
+from qiskit.visualization import plot_histogram
 # Load key
 def load_key(filename):
     with open(filename) as f:
@@ -11,6 +12,20 @@ def load_key(filename):
 key = load_key('../key.json')
 
 num_qubits = 10
+def plot_vectors_state_probs(classical_state: str, circuit: QuantumCircuit, num_samples: int) -> None:
+    state = Statevector.from_label(classical_state)
+    # Evolve the state through the quantum circuit
+    measurement = state.evolve(circuit)
+
+    #  Simulate measurement
+    statistics = measurement.sample_counts(num_samples)
+    print("Raw measurement results: ", statistics)
+
+    # Convert counts to probabilities
+    total_counts = sum(statistics.values())
+    probabilities = {state: count / total_counts for state, count in statistics.items()}
+    plot_histogram(probabilities)
+
 
 # create the circuit
 
@@ -46,3 +61,8 @@ four_squares.cx([2, 3], 8)
 
 four_squares.draw('mpl')
 print(four_squares)
+
+# Run the circuit
+classical_state = '1000000000'
+plot_vectors_state_probs(classical_state, four_squares, 4000)
+print("EOF")
