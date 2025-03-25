@@ -32,6 +32,19 @@ def apply_S(state):
 
 # Function to simulate a quantum measurement
 def measure(state):
+    """
+    Measure a quantum state.
+
+    This function calculates the probabilities of the quantum state by taking 
+    the squared magnitudes of the amplitudes. It then performs a measurement 
+    based on these probabilities and returns the outcome.
+
+    Parameters:
+    state (numpy.ndarray): A numpy array representing the quantum state vector.
+
+    Returns:
+    int: The outcome of the measurement, either 0 or 1.
+    """
     # Calculate the probabilities (squared magnitudes of the amplitudes)
     probabilities = np.abs(state) ** 2
     # Perform measurement based on probabilities
