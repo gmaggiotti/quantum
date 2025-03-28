@@ -29,6 +29,24 @@ def apply_CNOT(state):
 def apply_S(state):
     return np.dot(S, state)
 
+def apply_CZ(state):
+    """
+    Apply the Controlled-Z (CZ) gate to a two-qubit quantum state.
+
+    Parameters:
+    state (numpy.ndarray): A numpy array representing the quantum state vector.
+
+    Returns:
+    numpy.ndarray: The resulting quantum state after applying the CZ gate.
+    """
+    # Define the Controlled-Z gate
+    CZ = np.array([[1, 0, 0, 0],
+                   [0, 1, 0, 0],
+                   [0, 0, 1, 0],
+                   [0, 0, 0, -1]])
+    
+    # Apply the CZ gate to the state
+    return np.dot(CZ, state)
 
 # Function to simulate a quantum measurement
 def measure(state):
